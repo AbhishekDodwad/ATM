@@ -1,0 +1,95 @@
+public class ATM {
+    private int balance;
+    private int pin;
+
+    public ATM(int balance , int pin){
+        this.balance=balance;
+        this.pin=pin;
+
+    }
+
+    public void display(){
+        System.out.println("1.Check Balance");
+        System.out.println("2.Deposit");
+        System.out.println("3.Withdraw");
+        System.out.println("4.Change pin");
+        System.out.println("5.Exit");
+    }
+    public void deposit(int amount){
+       balance+=amount;
+       System.out.println("The amount of Rs "+amount+" has diposited");
+
+    }
+    public void withdraw(int amount){
+        if(balance<amount){
+            System.out.println("Insufficient balance");
+
+        }
+        else{
+        balance-=amount;
+        System.out.println("The amount of Rs "+amount+" has withdrawn");
+        }
+
+        
+
+
+
+    }
+
+    public int getBalance(){
+        return balance;
+    }
+
+    public boolean validatePin(int pin){
+       return this.pin==pin;
+    }
+
+  void changepin(int newpin){
+     pin=newpin;
+  }
+    public static void main(String[] args) {
+        ATM atm=new ATM(1000, 1234);
+        System.out.print("Enter the pin:");
+        int pin=Integer.parseInt(System.console().readLine());
+        if(atm.validatePin(pin)){
+              int option=0;
+              while(option!=5){
+                atm.display();
+                option=Integer.parseInt(System.console().readLine());
+                switch(option){
+                case 1: 
+                System.out.println("Balance= "+atm.getBalance());
+                break;
+                case 2:
+                System.out.println("Enter the amount:");
+                int amount=Integer.parseInt(System.console().readLine());
+                atm.deposit(amount);
+
+                break;
+                case 3: 
+                System.out.println("Enter the amount:");
+                amount=Integer.parseInt(System.console().readLine());
+                atm.withdraw(amount);
+                break;
+                case 4:
+                System.out.println("Enter new pin:");
+                int newpin=Integer.parseInt(System.console().readLine());
+                atm.changepin(newpin);
+                break;
+                case 5:
+                System.out.println("Thank you for using ATM");
+                break;
+                default:
+
+                break;
+              }
+        }
+    }
+        else{
+            System.out.println("You have entered invalid pin Invalid pin");
+        }
+        
+    }
+
+    
+}
